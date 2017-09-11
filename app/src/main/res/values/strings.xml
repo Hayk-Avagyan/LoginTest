@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="Username">Username</string>
+    <string name="Password">Password</string>
+    <string name="Sign_in">Sign in </string>
+    <string name="Terms">Terms and Conditions</string>
+    <string name="FAQ">FAQ</string>
+    <string name="Contact">Contact Us</string>
+    <string name="Restore">Restore Purchases</string>
+</resources>
