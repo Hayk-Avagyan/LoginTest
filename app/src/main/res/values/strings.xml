@@ -7,4 +7,5 @@
     <string name="FAQ">FAQ</string>
     <string name="Contact">Contact Us</string>
     <string name="Restore">Restore Purchases</string>
+    <string name="Logout">Logout</string>
 </resources>

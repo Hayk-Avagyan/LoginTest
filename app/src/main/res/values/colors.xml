@@ -6,4 +6,6 @@
     <color name="white">#ffffff</color>
     <color name="colorSignIn">#52ca3d</color>
     <color name="grey">#797979</color>
+    <color name="black">#000000</color>
+    <color name="logout">#cf4e32</color>
 </resources>
