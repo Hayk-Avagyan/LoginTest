@@ -55,7 +55,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="60dp"
-        android:background="@drawable/roundedbuttonlogout"
+        android:background="@drawable/rounded_button_logout"
         android:text="@string/Logout"
         android:textAllCaps="false"
         android:textColor="@color/white"

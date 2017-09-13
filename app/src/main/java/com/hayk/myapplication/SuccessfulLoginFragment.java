@@ -1,11 +1,11 @@
 package com.hayk.myapplication;
 
 
+import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,34 +19,28 @@ import android.widget.TextView;
 
 public class SuccessfulLoginFragment extends Fragment {
 
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
-    }
+    public static final String USER = "user";
+    public static final String PASSWORD = "password";
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.successful_login_fragment, null);
+        View view = inflater.inflate(R.layout.successful_login_fragment, container, false);
         TextView successfulLogin = (TextView) view.findViewById(R.id.successful_login);
-        TextView successfullPassword = (TextView) view.findViewById(R.id.successful_password);
+        TextView successfulPassword = (TextView) view.findViewById(R.id.successful_password);
         Button logoutButton = (Button) view.findViewById(R.id.logout);
 
         Bundle bundle = getArguments();
-        String user = bundle.getString("user");
-        String password = bundle.getString("pass");
+        String user = bundle.getString(USER);
+        String password = bundle.getString(PASSWORD);
 
         successfulLogin.setText(user);
-        successfullPassword.setText(password);
-
-        InputMethodManager inputManager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-        inputManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+        successfulPassword.setText(password);
 
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), LoginFragment.class);
+                Intent intent = new Intent(getActivity(), MainActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
 
@@ -55,6 +49,13 @@ public class SuccessfulLoginFragment extends Fragment {
 
         return view;
 
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        final InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(getView().getWindowToken(), 0);
     }
 
 }
