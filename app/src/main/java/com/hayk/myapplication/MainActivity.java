@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
+import com.hayk.myapplication.fragments.LoginFragment;
+
 public class MainActivity extends Activity {
 
     @Override
@@ -11,10 +13,9 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        LoginFragment loginFragment = new LoginFragment();
         getFragmentManager()
                 .beginTransaction()
-                .replace(R.id.fragment_container, loginFragment)
+                .replace(R.id.fragment_container, LoginFragment.newInstance())
                 .commit();
 
     }

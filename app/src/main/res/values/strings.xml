@@ -10,6 +10,10 @@
     <string name="Logout">Logout</string>
     <string name="passwordPattern">((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,20})</string>
     <string name="emailPattern">[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+</string>
-    <string name="ValidEmailAddress">Valid email address</string>
-    <string name="Invalidemail">Invalid email address or password</string>
+    <string name="validEmailAddress">Valid email address</string>
+    <string name="invalidEmail">Invalid email address or password</string>
+    <string name="registeredUsername">Registered user Email</string>
+    <string name="registeredPassword">Registration time</string>
+    <string name="userPreferencesKey">User_preferences_key</string>
+    <string name="currentTimePreferencesKey">Current_time_preferences_key</string>
 </resources>
