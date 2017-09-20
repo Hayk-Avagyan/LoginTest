@@ -36,9 +36,9 @@ public class LoginInfoController {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
-        String newKey = String.valueOf(sharedPreferences.getAll().size() + 1);
+        String email = loginInfo.getRegisteredEmail();
 
-        editor.putString(newKey, loginInfo.convertToJson(loginInfo));
+        editor.putString(email, loginInfo.convertToJson(loginInfo));
         editor.apply();
     }
 
