@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">Login Form</string>
     <string name="Username">Username</string>
     <string name="Password">Password</string>
     <string name="Sign_in">Sign in </string>
@@ -16,4 +16,14 @@
     <string name="registeredPassword">Registration time</string>
     <string name="userPreferencesKey">User_preferences_key</string>
     <string name="currentTimePreferencesKey">Current_time_preferences_key</string>
+    <!-- Registration Form -->
+    <string name="FirstName">First Name</string>
+    <string name="LastName">Last Name</string>
+    <string name="save_button">Save Account</string>
+    <string name="age">Age</string>
+    <string name="save_profile_changes">Your changes have been saved</string>
+    <string name="empty_profile_field">Please fill in all the empty fields</string>
+    <string name="profile_first_name">First Name</string>
+    <string name="profile_last_name">Last Name</string>
+    <string name="profile_age">Age</string>
 </resources>

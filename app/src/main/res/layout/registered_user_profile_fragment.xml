@@ -1,64 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/fragment"
+    android:id="@+id/user_profile_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/login_info_background"
     android:orientation="vertical"
     android:padding="16dp">
 
     <TextView
-        android:id="@+id/valid_username"
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:gravity="center"
-        android:text="@string/Username"
+        android:text="@string/profile_first_name"
         android:textColor="@color/black" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@android:color/darker_gray" />
+        android:background="@color/divider_color" />
 
     <TextView
-        android:id="@+id/successful_login"
+        android:id="@+id/profile_first_name"
         android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:layout_height="50dp"
         android:gravity="center"
         android:textColor="@color/black"
+        android:textSize="20sp"
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/valid_password"
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:gravity="center"
-        android:text="@string/Password"
+        android:text="@string/profile_last_name"
         android:textColor="@color/black" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@android:color/darker_gray" />
+        android:background="@color/divider_color" />
 
     <TextView
-        android:id="@+id/successful_password"
+        android:id="@+id/profile_last_name"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:gravity="center"
+        android:text="@string/profile_age"
+        android:textColor="@color/black" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/divider_color" />
+
+    <TextView
+        android:id="@+id/profile_age"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
         android:textColor="@color/black"
+        android:textSize="20sp"
         android:textStyle="bold" />
 
-    <Button
-        android:id="@+id/logout"
-        android:layout_width="170dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginBottom="80dp"
-        android:layout_marginTop="60dp"
-        android:background="@drawable/rounded_button_logout"
-        android:text="@string/Logout"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="18sp" />
 
 </LinearLayout>

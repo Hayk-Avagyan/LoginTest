@@ -5,7 +5,7 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
-import com.hayk.myapplication.model.LoginInfo;
+import com.hayk.myapplication.model.UserInfo;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -17,29 +17,49 @@ public class LoginInfoController {
 
     private static LoginInfoController instance;
 
-    public ArrayList<LoginInfo> getRegisteredData(Context context) {
-
+    public ArrayList<UserInfo> getRegisteredData(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        ArrayList<LoginInfo> infoArrayList = new ArrayList<>();
+        ArrayList<UserInfo> infoArrayList = new ArrayList<>();
 
         Map<String, ?> allEntries = sharedPreferences.getAll();
 
         for (Map.Entry<String, ?> entry : allEntries.entrySet()) {
 
             String loginInfoJsonString = (String) entry.getValue();
-            infoArrayList.add(LoginInfo.convertFromJson(loginInfoJsonString));
+            infoArrayList.add(UserInfo.convertFromJson(loginInfoJsonString));
         }
         return infoArrayList;
     }
 
-    public void addRegisteredData(LoginInfo loginInfo, Context context) {
+    public void addRegisteredData(UserInfo userInfo, Context context) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
-        String email = loginInfo.getRegisteredEmail();
+        String email = userInfo.getRegisteredEmail();
 
-        editor.putString(email, loginInfo.convertToJson(loginInfo));
+        editor.putString(email, userInfo.convertToJson(userInfo));
         editor.apply();
+    }
+
+    public void addUserProfile(String firstName, String lastName, String userAge, String email, Context context) {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        String userProfile = sharedPreferences.getString(email, null);
+        UserInfo userInfo = UserInfo.convertFromJson(userProfile);
+        userInfo.setUserFirstName(firstName);
+        userInfo.setUserLastName(lastName);
+        userInfo.setUserAge(userAge);
+
+        editor.putString(email, userInfo.convertToJson(userInfo));
+        editor.apply();
+    }
+
+    public UserInfo getUserProfile(Context context, String key) {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        String userProfile = sharedPreferences.getString(key, null);
+
+        return UserInfo.convertFromJson(userProfile);
     }
 
     private LoginInfoController() {

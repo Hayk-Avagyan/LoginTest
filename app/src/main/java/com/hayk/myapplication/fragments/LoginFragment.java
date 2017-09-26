@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 import com.hayk.myapplication.R;
 import com.hayk.myapplication.conttrollers.LoginInfoController;
-import com.hayk.myapplication.model.LoginInfo;
+import com.hayk.myapplication.model.UserInfo;
 
 import java.text.SimpleDateFormat;
 
@@ -61,13 +61,12 @@ public class LoginFragment extends Fragment {
                 String emailPattern = getString(R.string.emailPattern);
 
                 if (emailAddress.matches(emailPattern) && password.matches(passwordPattern)) {
-                    Toast.makeText(getActivity(), R.string.validEmailAddress, Toast.LENGTH_SHORT).show();
 
                     long date = System.currentTimeMillis();
                     SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy  HH:mm:ss");
                     String currentTime = dateFormat.format(date);
-                    LoginInfo loginInfo = new LoginInfo(emailAddress, currentTime);
-                    LoginInfoController.getInstance().addRegisteredData(loginInfo, getActivity().getApplicationContext());
+                    UserInfo userInfo = new UserInfo(emailAddress, currentTime);
+                    LoginInfoController.getInstance().addRegisteredData(userInfo, getActivity().getApplicationContext());
 
                     emailView.getText().clear();
                     passwordView.getText().clear();
@@ -75,7 +74,7 @@ public class LoginFragment extends Fragment {
                     getFragmentManager()
                             .beginTransaction()
                             .setCustomAnimations(R.animator.slide_right_enter, R.animator.slide_left_exit, R.animator.slide_left_enter, R.animator.slide_right_exit)
-                            .replace(R.id.fragment_container, SuccessfulLoginFragment.newInstance(emailAddress, password))
+                            .replace(R.id.fragment_container, RegistrationFormFragment.newInstance(emailAddress, currentTime))
                             .commit();
 
                 } else {
