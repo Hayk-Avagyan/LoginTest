@@ -15,7 +15,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.hayk.myapplication.R;
-import com.hayk.myapplication.conttrollers.LoginInfoController;
+import com.hayk.myapplication.controllers.LoginInfoController;
 
 /**
  * Created by User on 11.09.2017.

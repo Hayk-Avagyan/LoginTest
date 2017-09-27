@@ -11,7 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.hayk.myapplication.R;
-import com.hayk.myapplication.conttrollers.LoginInfoController;
+import com.hayk.myapplication.controllers.LoginInfoController;
 import com.hayk.myapplication.model.UserInfo;
 
 import java.text.SimpleDateFormat;

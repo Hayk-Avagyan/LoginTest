@@ -26,4 +26,5 @@
     <string name="profile_first_name">First Name</string>
     <string name="profile_last_name">Last Name</string>
     <string name="profile_age">Age</string>
+    <string name="selected_email">Your last selected email:\u0020\u0020</string>
 </resources>

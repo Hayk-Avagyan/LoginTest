@@ -1,4 +1,4 @@
-package com.hayk.myapplication.conttrollers;
+package com.hayk.myapplication.controllers;
 
 import android.content.Context;
 import android.content.SharedPreferences;

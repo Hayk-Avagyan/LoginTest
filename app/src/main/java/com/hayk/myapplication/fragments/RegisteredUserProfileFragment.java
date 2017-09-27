@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.hayk.myapplication.R;
-import com.hayk.myapplication.conttrollers.LoginInfoController;
+import com.hayk.myapplication.controllers.LoginInfoController;
 
 /**
  * Created by User on 20.09.2017.

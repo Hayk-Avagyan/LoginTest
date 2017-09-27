@@ -1,7 +1,6 @@
 package com.hayk.myapplication.adapters;
 
-import android.app.Activity;
-import android.app.FragmentManager;
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.hayk.myapplication.R;
-import com.hayk.myapplication.fragments.RegisteredUserProfileFragment;
+import com.hayk.myapplication.interfaces.OnItemClickListener;
 import com.hayk.myapplication.model.UserInfo;
 
 import java.util.ArrayList;
@@ -20,17 +19,20 @@ import java.util.ArrayList;
 
 public class LoginInfoAdapter extends RecyclerView.Adapter<LoginInfoAdapter.ViewHolder> {
 
-    private static final String TAG = "adapter";
+    private final String TAG = getClass().getSimpleName();
     private ArrayList<UserInfo> userInfo;
+    private OnItemClickListener onItemClickListener;
+    private Context context;
 
-    public LoginInfoAdapter(ArrayList<UserInfo> dataLists) {
+    public LoginInfoAdapter(ArrayList<UserInfo> dataLists, Context context) {
         this.userInfo = dataLists;
+        this.context = context;
     }
 
     @Override
     public LoginInfoAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_view_items, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.recycler_view_items, parent, false);
         return new ViewHolder(view);
     }
 
@@ -47,7 +49,11 @@ public class LoginInfoAdapter extends RecyclerView.Adapter<LoginInfoAdapter.View
         return userInfo.size();
     }
 
-    static class ViewHolder extends RecyclerView.ViewHolder {
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder {
         TextView registeredEmail;
         TextView registrationTime;
 
@@ -58,13 +64,13 @@ public class LoginInfoAdapter extends RecyclerView.Adapter<LoginInfoAdapter.View
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    String email = registeredEmail.getText().toString().trim();
-                    FragmentManager manager = ((Activity) itemView.getContext()).getFragmentManager();
+                    onItemClickListener.onItemClick(getAdapterPosition());
+                    /*FragmentManager manager = ((Activity) itemView.getContext()).getFragmentManager();
                     manager.beginTransaction()
                             .setCustomAnimations(R.animator.slide_right_enter, R.animator.slide_left_exit, R.animator.slide_left_enter, R.animator.slide_right_exit)
                             .replace(R.id.fragment_container, RegisteredUserProfileFragment.newInstance(email))
                             .addToBackStack(TAG)
-                            .commit();
+                            .commit();*/
                 }
             });
         }
