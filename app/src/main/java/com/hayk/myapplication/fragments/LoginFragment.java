@@ -1,6 +1,7 @@
 package com.hayk.myapplication.fragments;
 
 import android.app.Fragment;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -12,6 +13,7 @@ import android.widget.Toast;
 
 import com.hayk.myapplication.R;
 import com.hayk.myapplication.controllers.LoginInfoController;
+import com.hayk.myapplication.interfaces.OnUserInfoAddListener;
 import com.hayk.myapplication.model.UserInfo;
 
 import java.text.SimpleDateFormat;
@@ -28,9 +30,16 @@ public class LoginFragment extends Fragment {
     private EditText passwordView;
     private Button signIn;
     private Button loginInfo;
+    private OnUserInfoAddListener onUserInfoAddListener;
 
     public static LoginFragment newInstance() {
         return new LoginFragment();
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        onUserInfoAddListener = (OnUserInfoAddListener) context;
     }
 
     @Nullable
@@ -67,6 +76,7 @@ public class LoginFragment extends Fragment {
                     String currentTime = dateFormat.format(date);
                     UserInfo userInfo = new UserInfo(emailAddress, currentTime);
                     LoginInfoController.getInstance().addRegisteredData(userInfo, getActivity().getApplicationContext());
+                    onUserInfoAddListener.onItemAdd(userInfo);
 
                     emailView.getText().clear();
                     passwordView.getText().clear();
