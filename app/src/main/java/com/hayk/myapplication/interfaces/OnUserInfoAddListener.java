@@ -1,6 +1,6 @@
 package com.hayk.myapplication.interfaces;
 
-import com.hayk.myapplication.model.UserInfo;
+import com.hayk.myapplication.model.UserInfoTimeStamp;
 
 /**
  * Created by User on 27.09.2017.
@@ -8,5 +8,5 @@ import com.hayk.myapplication.model.UserInfo;
 
 public interface OnUserInfoAddListener {
 
-    void onItemAdd(UserInfo userInfo);
+    void onItemAdd(UserInfoTimeStamp userInfoTimeStamp);
 }

@@ -7,7 +7,7 @@ import android.widget.Toast;
 
 import com.hayk.myapplication.fragments.LoginFragment;
 import com.hayk.myapplication.interfaces.OnUserInfoAddListener;
-import com.hayk.myapplication.model.UserInfo;
+import com.hayk.myapplication.model.UserInfoTimeStamp;
 
 public class MainActivity extends Activity implements OnUserInfoAddListener {
 
@@ -24,10 +24,11 @@ public class MainActivity extends Activity implements OnUserInfoAddListener {
     }
 
     @Override
-    public void onItemAdd(UserInfo userInfo) {
-        String registeredEmail = userInfo.getRegisteredEmail();
-        String registrationTime = userInfo.getRegistrationTime();
-        Toast.makeText(this, registeredEmail + "  " + registrationTime, Toast.LENGTH_LONG).show();
-
+    public void onItemAdd(UserInfoTimeStamp userInfoTimeStamp) {
+        if (userInfoTimeStamp.getRegistrationTimeList() != null && userInfoTimeStamp.getRegisteredEmail() != null) {
+            String registeredEmail = userInfoTimeStamp.getRegisteredEmail();
+            String registrationTime = userInfoTimeStamp.getRegistrationTimeList().get(userInfoTimeStamp.getRegistrationTimeList().size() - 1);
+            Toast.makeText(this, registeredEmail + "  " + registrationTime, Toast.LENGTH_LONG).show();
+        }
     }
 }

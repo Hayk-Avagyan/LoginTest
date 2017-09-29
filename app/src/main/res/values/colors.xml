@@ -9,8 +9,10 @@
     <color name="black">#000000</color>
     <color name="logout">#FD3555</color>
     <color name="save">#279DB1</color>
-    <color name="login_info_background">#044A32</color>
+    <color name="sessions_time_background">#8F3F57</color>
     <color name="user_profile_background">#2A333B</color>
     <color name="divider_color">#ffffff</color>
     <color name="transparent">#00ffffff</color>
+    <color name="login_info_background">#044A32</color>
+    <color name="user_info_background">#249E85</color>
 </resources>

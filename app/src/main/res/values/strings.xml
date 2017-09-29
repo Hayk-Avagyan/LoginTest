@@ -12,7 +12,7 @@
     <string name="emailPattern">[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+</string>
     <string name="validEmailAddress">Valid email address</string>
     <string name="invalidEmail">Invalid email address or password</string>
-    <string name="registeredUsername">Registered user Email</string>
+    <string name="registeredUsername">Application sign in users emails</string>
     <string name="registeredPassword">Registration time</string>
     <string name="userPreferencesKey">User_preferences_key</string>
     <string name="currentTimePreferencesKey">Current_time_preferences_key</string>
@@ -27,4 +27,7 @@
     <string name="profile_last_name">Last Name</string>
     <string name="profile_age">Age</string>
     <string name="selected_email">Your last selected email:\u0020\u0020</string>
+    <string name="registration_time">User registration time</string>
+    <string name="user_email">User email</string>
+    <string name="sessions_time">Sessions time</string>
 </resources>

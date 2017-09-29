@@ -5,8 +5,10 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
-import com.hayk.myapplication.model.UserInfo;
+import com.hayk.myapplication.interfaces.OnUserInfoAddListener;
+import com.hayk.myapplication.model.UserInfoTimeStamp;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -17,27 +19,42 @@ public class LoginInfoController {
 
     private static LoginInfoController instance;
 
-    public ArrayList<UserInfo> getRegisteredData(Context context) {
+    public ArrayList<UserInfoTimeStamp> getRegisteredData(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        ArrayList<UserInfo> infoArrayList = new ArrayList<>();
+        ArrayList<UserInfoTimeStamp> infoArrayList = new ArrayList<>();
 
         Map<String, ?> allEntries = sharedPreferences.getAll();
 
         for (Map.Entry<String, ?> entry : allEntries.entrySet()) {
 
             String loginInfoJsonString = (String) entry.getValue();
-            infoArrayList.add(UserInfo.convertFromJson(loginInfoJsonString));
+            infoArrayList.add(UserInfoTimeStamp.convertFromJson(loginInfoJsonString));
         }
         return infoArrayList;
     }
 
-    public void addRegisteredData(UserInfo userInfo, Context context) {
+    public void addRegisteredData(Context context, String email) {
+        long date = System.currentTimeMillis();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy  HH:mm:ss");
+        String currentTime = dateFormat.format(date);
+
+        OnUserInfoAddListener onUserInfoAddListener = (OnUserInfoAddListener) context;
+
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
-        String email = userInfo.getRegisteredEmail();
+        String userProfile = sharedPreferences.getString(email, null);
+        UserInfoTimeStamp userInfoTimeStamp;
+        if (userProfile == null) {
+            userInfoTimeStamp = new UserInfoTimeStamp(email);
+            userInfoTimeStamp.getRegistrationTimeList().add(currentTime);
+            onUserInfoAddListener.onItemAdd(userInfoTimeStamp);
+        } else {
+            userInfoTimeStamp = UserInfoTimeStamp.convertFromJson(userProfile);
+            userInfoTimeStamp.getRegistrationTimeList().add(currentTime);
+        }
 
-        editor.putString(email, userInfo.convertToJson(userInfo));
+        editor.putString(email, userInfoTimeStamp.convertToJson(userInfoTimeStamp));
         editor.apply();
     }
 
@@ -46,20 +63,20 @@ public class LoginInfoController {
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
         String userProfile = sharedPreferences.getString(email, null);
-        UserInfo userInfo = UserInfo.convertFromJson(userProfile);
-        userInfo.setUserFirstName(firstName);
-        userInfo.setUserLastName(lastName);
-        userInfo.setUserAge(userAge);
+        UserInfoTimeStamp userInfoTimeStamp = UserInfoTimeStamp.convertFromJson(userProfile);
+        userInfoTimeStamp.setUserFirstName(firstName);
+        userInfoTimeStamp.setUserLastName(lastName);
+        userInfoTimeStamp.setUserAge(userAge);
 
-        editor.putString(email, userInfo.convertToJson(userInfo));
+        editor.putString(email, userInfoTimeStamp.convertToJson(userInfoTimeStamp));
         editor.apply();
     }
 
-    public UserInfo getUserProfile(Context context, String key) {
+    public UserInfoTimeStamp getUserProfile(Context context, String key) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         String userProfile = sharedPreferences.getString(key, null);
 
-        return UserInfo.convertFromJson(userProfile);
+        return UserInfoTimeStamp.convertFromJson(userProfile);
     }
 
     private LoginInfoController() {
