@@ -56,14 +56,14 @@ public class RegistrationFormFragment extends Fragment {
         Bundle bundle = getArguments();
         String email = bundle.getString(USER_KEY);
 
-        UserInfoTimeStamp userInfoTimeStamp = LoginInfoController.getInstance().getUserProfile(getActivity(), email);
+        UserInfoTimeStamp userInfoTimeStamp = LoginInfoController.getInstance().getUserInfoByEmail(getActivity(), email);
         if (userInfoTimeStamp != null) {
             firstNameView.setText(userInfoTimeStamp.getUserFirstName());
             lastNameView.setText(userInfoTimeStamp.getUserLastName());
             userAgeView.setText(userInfoTimeStamp.getUserAge());
         }
-        return view;
 
+        return view;
     }
 
     @Override
@@ -109,7 +109,7 @@ public class RegistrationFormFragment extends Fragment {
                     Bundle bundle = getArguments();
                     String email = bundle.getString(USER_KEY);
 
-                    LoginInfoController.getInstance().addUserProfile(firstName, lastName, userAge, email, getActivity());
+                    LoginInfoController.getInstance().setPersonalData(firstName, lastName, userAge, email, getActivity());
                 }
 
             }

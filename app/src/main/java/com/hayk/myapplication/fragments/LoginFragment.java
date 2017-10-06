@@ -59,7 +59,7 @@ public class LoginFragment extends Fragment {
 
                 if (emailAddress.matches(emailPattern) && password.matches(passwordPattern)) {
 
-                    LoginInfoController.getInstance().addRegisteredData(getActivity(), emailAddress);
+                    LoginInfoController.getInstance().addLoginInfo(getActivity(), emailAddress);
 
                     emailView.getText().clear();
                     passwordView.getText().clear();

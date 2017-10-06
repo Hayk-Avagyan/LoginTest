@@ -1,9 +1,7 @@
 package com.hayk.myapplication.fragments;
 
 import android.app.Fragment;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -15,6 +13,7 @@ import android.widget.TextView;
 
 import com.hayk.myapplication.R;
 import com.hayk.myapplication.adapters.RegistrationTimeAdapter;
+import com.hayk.myapplication.controllers.LoginInfoController;
 import com.hayk.myapplication.model.UserInfoTimeStamp;
 
 /**
@@ -54,9 +53,7 @@ public class RegisteredUserProfileFragment extends Fragment {
         Bundle bundle = getArguments();
         String key = bundle.getString(USER_EMAIL);
 
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        String userProfile = sharedPreferences.getString(key, null);
-        UserInfoTimeStamp userInfoTimeStamp = UserInfoTimeStamp.convertFromJson(userProfile);
+        UserInfoTimeStamp userInfoTimeStamp = LoginInfoController.getInstance().getUserInfoByEmail(getActivity(), key);
 
         RegistrationTimeAdapter adapter = new RegistrationTimeAdapter(userInfoTimeStamp.getRegistrationTimeList());
         recyclerView.setAdapter(adapter);

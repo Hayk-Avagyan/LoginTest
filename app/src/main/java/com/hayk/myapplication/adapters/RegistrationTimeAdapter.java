@@ -8,7 +8,9 @@ import android.widget.TextView;
 
 import com.hayk.myapplication.R;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 
 /**
  * Created by User on 28.09.2017.
@@ -16,9 +18,9 @@ import java.util.ArrayList;
 
 public class RegistrationTimeAdapter extends RecyclerView.Adapter<RegistrationTimeAdapter.ViewHolder> {
 
-    private ArrayList<String> timeList;
+    private ArrayList<Long> timeList;
 
-    public RegistrationTimeAdapter(ArrayList<String> list) {
+    public RegistrationTimeAdapter(ArrayList<Long> list) {
         this.timeList = list;
     }
 
@@ -30,8 +32,11 @@ public class RegistrationTimeAdapter extends RecyclerView.Adapter<RegistrationTi
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
+        long date = timeList.get(position);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy  HH:mm:ss", Locale.getDefault());
+        String currentTime = dateFormat.format(date);
 
-        holder.registrationTimeView.setText(timeList.get(position));
+        holder.registrationTimeView.setText(currentTime);
     }
 
     @Override

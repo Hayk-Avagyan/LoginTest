@@ -1,7 +1,5 @@
 package com.hayk.myapplication.model;
 
-import com.google.gson.Gson;
-
 import java.util.ArrayList;
 
 /**
@@ -10,27 +8,17 @@ import java.util.ArrayList;
 
 public class UserInfoTimeStamp extends UserInfo {
 
-    private ArrayList<String> registrationTimeList = new ArrayList<>();
+    private ArrayList<Long> registrationTimeList = new ArrayList<>();
 
     public UserInfoTimeStamp(String registeredEmail) {
         super(registeredEmail);
     }
 
-    public ArrayList<String> getRegistrationTimeList() {
+    public ArrayList<Long> getRegistrationTimeList() {
         return registrationTimeList;
     }
 
-    public void setRegistrationTimeList(ArrayList<String> registrationTimeList) {
+    public void setRegistrationTimeList(ArrayList<Long> registrationTimeList) {
         this.registrationTimeList = registrationTimeList;
-    }
-
-    public static UserInfoTimeStamp convertFromJson(String s) {
-        Gson gson = new Gson();
-        return gson.fromJson(s, UserInfoTimeStamp.class);
-    }
-
-    public String convertToJson(UserInfoTimeStamp userInfoTimeStamp) {
-        Gson gson = new Gson();
-        return gson.toJson(userInfoTimeStamp);
     }
 }

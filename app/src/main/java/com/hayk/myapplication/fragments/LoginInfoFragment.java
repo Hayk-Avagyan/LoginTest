@@ -33,7 +33,7 @@ public class LoginInfoFragment extends Fragment {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
 
-        LoginInfoAdapter adapter = new LoginInfoAdapter(LoginInfoController.getInstance().getRegisteredData(getActivity()), getActivity());
+        LoginInfoAdapter adapter = new LoginInfoAdapter(LoginInfoController.getInstance().getAllUserInfo(getActivity()), getActivity());
         recyclerView.setAdapter(adapter);
 
         return view;
